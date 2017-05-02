@@ -1,5 +1,5 @@
 class Task
-  attr_accessor(:description, :list_id)
+  attr_reader(:description, :list_id)
 
   def initialize(attributes)
     @description = attributes.fetch(:description);
