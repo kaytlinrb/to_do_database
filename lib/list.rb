@@ -50,5 +50,17 @@ class List
       list_tasks.push(Task.new({:description => description, :list_id => list_id}))
     end
     list_tasks
-  end  
+  end
+  def update(attributes)
+    @name = attributes.fetch(:name)
+    @id = self.id()
+    DB.exec("update lists set name = '#{@name}' where id = #{@id};")
+  end
+
+  define_method(:delete) do
+   DB.exec("DELETE FROM lists WHERE id = #{self.id()};")
+   DB.exec("DELETE FROM tasks WHERE list_id = #{self.id()};")
+ end
+
+
 end
